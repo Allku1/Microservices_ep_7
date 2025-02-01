@@ -16,13 +16,13 @@ type Product struct {
 	// min: 1
 	ID int `json:"id"` // Unique identifier for the product
 
-	// the name for this poduct
+	// the name for this product
 	//
 	// required: true
 	// max length: 255
 	Name string `json:"name" validate:"required"`
 
-	// the description for this poduct
+	// the description for this product
 	//
 	// required: false
 	// max length: 10000

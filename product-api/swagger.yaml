@@ -1,6 +1,6 @@
 basePath: /
 consumes:
-- application/json
+  - application/json
 definitions:
   GenericError:
     description: GenericError is a generic error message returned by a server
@@ -14,7 +14,7 @@ definitions:
     description: Product defines the structure for an API product
     properties:
       description:
-        description: the description for this poduct
+        description: the description for this product
         maxLength: 10000
         type: string
         x-go-name: Description
@@ -25,7 +25,7 @@ definitions:
         type: integer
         x-go-name: ID
       name:
-        description: the name for this poduct
+        description: the name for this product
         maxLength: 255
         type: string
         x-go-name: Name
@@ -41,9 +41,9 @@ definitions:
         type: string
         x-go-name: SKU
     required:
-    - name
-    - price
-    - sku
+      - name
+      - price
+      - sku
     type: object
     x-go-package: github.com/nicholasjackson/building-microservices-youtube/product-api/data
   ValidationError:
@@ -66,84 +66,93 @@ paths:
       description: Return a list of products from the database
       operationId: listProducts
       responses:
-        "200":
+        '200':
           $ref: '#/responses/productsResponse'
       tags:
-      - products
+        - products
     post:
       description: Create a new product
       operationId: createProduct
       parameters:
-      - description: |-
-          Product data structure to Update or Create.
-          Note: the id field is ignored by update and create operations
-        in: body
-        name: Body
-        required: true
-        schema:
-          $ref: '#/definitions/Product'
+        - description: |-
+            Product data structure to Update or Create.
+            Note: the id field is ignored by update and create operations
+          in: body
+          name: Body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
       responses:
-        "200":
+        '200':
           $ref: '#/responses/productResponse'
-        "422":
+        '422':
           $ref: '#/responses/errorValidation'
-        "501":
+        '501':
           $ref: '#/responses/errorResponse'
       tags:
-      - products
+        - products
     put:
       description: Update a products details
       operationId: updateProduct
       parameters:
-      - description: |-
-          Product data structure to Update or Create.
-          Note: the id field is ignored by update and create operations
-        in: body
-        name: Body
-        required: true
-        schema:
-          $ref: '#/definitions/Product'
-      - description: The id of the product for which the operation relates
-        format: int64
-        in: path
-        name: id
-        required: true
-        type: integer
-        x-go-name: ID
+        - description: |-
+            Product data structure to Update or Create.
+            Note: the id field is ignored by update and create operations
+          in: body
+          name: Body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
       responses:
-        "201":
+        '201':
           $ref: '#/responses/noContentResponse'
-        "404":
+        '404':
           $ref: '#/responses/errorResponse'
-        "422":
+        '422':
           $ref: '#/responses/errorValidation'
       tags:
-      - products
+        - products
   /products/{id}:
     delete:
       description: Update a products details
       operationId: deleteProduct
+      parameters:
+        - description: The id of the product for which the operation relates
+          format: int64
+          in: path
+          name: id
+          required: true
+          type: integer
+          x-go-name: ID
       responses:
-        "201":
+        '201':
           $ref: '#/responses/noContentResponse'
-        "404":
+        '404':
           $ref: '#/responses/errorResponse'
-        "501":
+        '501':
           $ref: '#/responses/errorResponse'
       tags:
-      - products
+        - products
     get:
       description: Return a list of products from the database
-      operationId: listSingle
+      operationId: listSingleProduct
+      parameters:
+        - description: The id of the product for which the operation relates
+          format: int64
+          in: path
+          name: id
+          required: true
+          type: integer
+          x-go-name: ID
       responses:
-        "200":
+        '200':
           $ref: '#/responses/productResponse'
-        "404":
+        '404':
           $ref: '#/responses/errorResponse'
       tags:
-      - products
+        - products
 produces:
-- application/json
+  - application/json
 responses:
   errorResponse:
     description: Generic error message returned as a string
@@ -166,5 +175,5 @@ responses:
         $ref: '#/definitions/Product'
       type: array
 schemes:
-- http
-swagger: "2.0"
+  - http
+swagger: '2.0'
