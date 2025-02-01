@@ -15,7 +15,7 @@
 // swagger:meta
 package handlers
 
-import "github.com/nicholasjackson/building-microservices-youtube/product-api/data"
+import "github.com/Allku1/Microservices_ep_7/product-api/data"
 
 //
 // NOTE: Types defined here are purely for documentation purposes

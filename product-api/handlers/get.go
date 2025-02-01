@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/data"
+	"github.com/Allku1/Microservices_ep_7/product-api/data"
 )
 
 // swagger:route GET /products products listProducts
@@ -14,6 +14,8 @@ import (
 // ListAll handles GET requests and returns all current products
 func (p *Products) ListAll(rw http.ResponseWriter, r *http.Request) {
 	p.l.Println("[DEBUG] get all records")
+
+	rw.Header().Add("Content-Type", "application/json")
 
 	prods := data.GetProducts()
 
